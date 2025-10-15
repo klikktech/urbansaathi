@@ -1,5 +1,8 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* 🌆 Urban Saathi Global Theme */
 :root {
   --color-urban-white: #E3E5E9;
   --color-urban-red: #E90000;
@@ -8,25 +11,22 @@
   --color-urban-black: #161616;
 }
 
+/* 🌙 Global Background and Typography */
+html,
 body {
-  background-color: var(--color-urban-black);
+  height: 100% !important;
+  background-color: var(--color-urban-black) !important;
+  color: var(--color-urban-white) !important;
+  font-family: 'Inter', sans-serif !important;
+  scroll-behavior: smooth !important;
 }
 
-/* Floating animations for images */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
+/* 🖱️ Transition & selection styles */
+* {
+  transition: color 0.2s ease, background-color 0.2s ease;
 }
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-float-delayed {
-  animation: float 8s ease-in-out infinite;
-  animation-delay: 2s;
+::selection {
+  background-color: var(--color-urban-red);
+  color: var(--color-urban-white);
 }

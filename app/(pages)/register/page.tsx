@@ -12,7 +12,7 @@ export default function RegisterPage() {
   const [name, setName] = useState("");
 
   return (
-    <div className="min-h-screen bg-urban-white flex items-center justify-center p-4 relative">
+    <div className="min-h-screen flex items-center justify-center p-4 relative">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
         <div className="text-center mb-8">
           <h1 className="text-2xl font-bold text-urban-dark-gray mb-2">
@@ -40,7 +40,7 @@ export default function RegisterPage() {
           <Button text="Sign up" active={true} />
         </div>
 
-        <div className="text-center mt-6">
+        <div className="text-center mt-6 text-[var(--color-urban-black)]">
           Already have an account?{" "}
           <Link
             href="/login"
