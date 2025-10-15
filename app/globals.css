@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+:root {
+  --color-urban-white: #E3E5E9;
+  --color-urban-red: #E90000;
+  --color-urban-gray: #A9A9A9;
+  --color-urban-dark-gray: #323232;
+  --color-urban-black: #161616;
+}
+
+body {
+  background-color: var(--color-urban-black);
+}
+
+/* Floating animations for images */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 8s ease-in-out infinite;
+  animation-delay: 2s;
+}
