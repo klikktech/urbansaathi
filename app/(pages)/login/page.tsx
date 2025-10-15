@@ -6,19 +6,19 @@ import Link from "next/link";
 import Button from "@/components/atoms/Button";
 import Input from "@/components/atoms/Input";
 
-export default function RegisterPage() {
+export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   return (
-    <div className="min-h-screen bg-urban-white flex items-center justify-center p-4 relative">
+    <div className="min-h-screen flex items-center justify-center p-4 relative">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
         <div className="text-center mb-8">
           <h1 className="text-2xl font-bold text-urban-dark-gray mb-2">
             Urban Saathi
           </h1>
           <h2 className="text-3xl font-bold text-urban-dark-gray mb-2">
-            Sign Up
+            Log In
           </h2>
         </div>
 
@@ -35,16 +35,16 @@ export default function RegisterPage() {
             onChange={setPassword}
           />
 
-          <Button text="Login" active={true} />
+          <Button text="Log in" active={true} />
         </div>
 
-        <div className="text-center mt-6">
-          New here?{" "}
+        <div className="text-center mt-6 text-[var(--color-urban-black)]">
+          Don't have an account?{" "}
           <Link
             href="/register"
             className="text-[var(--color-urban-red)] underline"
           >
-            Register
+            Sign up
           </Link>
         </div>
       </div>
