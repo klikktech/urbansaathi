@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import Input from "@/components/atoms/Input";
 import Select from "@/components/atoms/Select";
+import ImageUpload from "@/components/atoms/ImageUpload";
 
 export default function AccommodationListing() {
   const [formData, setFormData] = useState({
@@ -18,10 +19,30 @@ export default function AccommodationListing() {
     state: "",
     pincode: "",
     description: "",
+    images: [] as File[],
   });
 
   const handleChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleImagesChange = (images: File[]) => {
+    setFormData((prev) => ({ ...prev, images }));
+  };
+
+  const handleAddressSelect = (address: {
+    street: string;
+    city: string;
+    state: string;
+    pincode: string;
+  }) => {
+    setFormData((prev) => ({
+      ...prev,
+      street: address.street,
+      city: address.city,
+      state: address.state,
+      pincode: address.pincode,
+    }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -53,6 +74,14 @@ export default function AccommodationListing() {
       {/* Form Card */}
       <div className="w-full max-w-5xl bg-gray-800 rounded-xl shadow-lg p-5 sm:p-8 mb-8">
         <form onSubmit={handleSubmit} className="space-y-8">
+          {/* Image Upload Section */}
+          <ImageUpload
+            images={formData.images}
+            onImagesChange={handleImagesChange}
+            maxFiles={10}
+            maxSize={10}
+          />
+
           {/* Basic Details */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
@@ -95,6 +124,7 @@ export default function AccommodationListing() {
                 value={formData.rent}
                 onChange={(value) => handleChange("rent", value)}
                 className="bg-gray-900 border-gray-700 text-gray-100 rounded-lg"
+                required
               />
             </div>
 
@@ -141,29 +171,40 @@ export default function AccommodationListing() {
                 value={formData.community}
                 onChange={(value) => handleChange("community", value)}
                 className="bg-gray-900 border-gray-700 text-gray-100 rounded-lg"
+                required
               />
             </div>
           </div>
 
-          {/* Address */}
+          {/* Address Autocomplete */}
+          <div>
+            <label className="block text-sm text-gray-300 mb-1">Address</label>
+            <p className="text-xs text-gray-400 mt-1">
+              Select from suggestions to auto-fill address fields
+            </p>
+          </div>
+
+          {/* Address Details (Auto-filled) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm text-gray-300 mb-1">Street</label>
               <Input
-                placeholder="Enter street"
+                placeholder="Street address"
                 value={formData.street}
                 onChange={(value) => handleChange("street", value)}
                 className="bg-gray-900 border-gray-700 text-gray-100 rounded-lg"
+                required
               />
             </div>
 
             <div>
               <label className="block text-sm text-gray-300 mb-1">City</label>
               <Input
-                placeholder="Enter city"
+                placeholder="City"
                 value={formData.city}
                 onChange={(value) => handleChange("city", value)}
                 className="bg-gray-900 border-gray-700 text-gray-100 rounded-lg"
+                required
               />
             </div>
           </div>
@@ -172,22 +213,24 @@ export default function AccommodationListing() {
             <div>
               <label className="block text-sm text-gray-300 mb-1">State</label>
               <Input
-                placeholder="Enter state"
+                placeholder="State"
                 value={formData.state}
                 onChange={(value) => handleChange("state", value)}
                 className="bg-gray-900 border-gray-700 text-gray-100 rounded-lg"
+                required
               />
             </div>
 
             <div>
               <label className="block text-sm text-gray-300 mb-1">
-                Pincode
+                Zip Code
               </label>
               <Input
-                placeholder="Enter pincode"
+                placeholder="Zip code"
                 value={formData.pincode}
                 onChange={(value) => handleChange("pincode", value)}
                 className="bg-gray-900 border-gray-700 text-gray-100 rounded-lg"
+                required
               />
             </div>
           </div>

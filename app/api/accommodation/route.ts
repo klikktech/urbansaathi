@@ -1,13 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { CreateAccommodationRequest, Accommodation } from "@/entity/Accommodation";
+import { CreateAccommodationRequest } from "@/entity/Accommodation";
 import dbConnect from '@/lib/mongodb.js';
 import AccommodationModel from '@/models/Accommodation';
 
-const saveAccommodation = async (body: CreateAccommodationRequest) => {
+const saveAccommodation = async (body: any) => {
   await dbConnect();
   
   const accommodationData = {
-    ...body,
+    type: body.type,
+    washroom: body.washroom,
+    rent: parseInt(body.rent),
+    genderPreference: body.genderPreference,
+    laundryUnit: body.laundryUnit,
+    community: body.community,
+    address: {
+      street: body.street,
+      city: body.city,
+      state: body.state,
+      pincode: body.pincode,
+      landmark: body.landmark || ''
+    },
+    description: body.description,
     ownerId: 'temp-user-id', // TODO: Get from authentication
     availability: 'available' as const,
     amenities: body.amenities || [],

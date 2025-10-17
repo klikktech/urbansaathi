@@ -7,6 +7,7 @@ interface InputProps {
   disabled?: boolean;
   className?: string;
   type?: string;
+  required?: boolean;
 }
 
 export default function Input({
@@ -16,6 +17,7 @@ export default function Input({
   disabled = false,
   className = "",
   type = "text",
+  required = false,
 }: InputProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (onChange) {
@@ -31,6 +33,7 @@ export default function Input({
         value={value}
         onChange={handleChange}
         disabled={disabled}
+        required={required}
         className={`${className} w-full px-4 py-3 text-urban-black placeholder-urban-gray rounded-md border border-urban-gray focus:outline-none focus:border-urban-red focus:ring-1 focus:ring-urban-red disabled:opacity-50 disabled:cursor-not-allowed`}
       />
     </div>
